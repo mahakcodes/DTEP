@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Sora', system-ui, -apple-system, sans-serif;
+  background-color: #FAF7F2;
+  color: #2A2A28;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+::selection {
+  background-color: #6B7C5E;
+  color: #FAF7F2;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF7F2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C4B8A1;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A3B48E;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #6B7C5E;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Paper texture overlay utility */
+.bg-paper {
+  position: relative;
+  background-color: #FAF7F2;
+}
+
+.bg-paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.16 0 0 0 0 0.16 0 0 0 0 0.16 0 0 0 0.03 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-paper > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Text balance */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
