@@ -1,59 +1,53 @@
-import axios from 'axios'
+import axios from 'axios';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
-  timeout: 15000,
-})
+  baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
+// Automatically attach JWT Access Token to every request
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('dtep_token')
+    const token = localStorage.getItem('dtep_token');
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`
+      config.headers.Authorization = `Bearer ${token}`;
     }
-    return config
+    return config;
   },
   (error) => Promise.reject(error)
-)
+);
 
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem('dtep_token')
-      localStorage.removeItem('dtep_user')
-      if (typeof window !== 'undefined' && !window.location.pathname.includes('/login')) {
-        window.location.href = '/login'
-      }
-    }
-    return Promise.reject(error)
-  }
-)
+// Auth APIs
+export const loginUser = async (credentials) => {
+  // Using /api/users/login/ based on urls.py structure
+  const response = await api.post('/api/users/login/', credentials);
+  return response.data;
+};
 
-export default api
+// Test APIs
+export const fetchStudentTests = async () => {
+  const response = await api.get('/api/tests/');
+  return response.data;
+};
 
-export const authAPI = {
-  login: (credentials) => api.post('/auth/login', credentials),
-  logout: () => api.post('/auth/logout'),
-  me: () => api.get('/auth/me'),
-}
+export const fetchTestDetails = async (testId) => {
+  const response = await api.get(`/api/tests/${testId}/`);
+  return response.data;
+};
 
-export const cyclesAPI = {
-  list: (params) => api.get('/cycles', { params }),
-  get: (id) => api.get(`/cycles/${id}`),
-  create: (data) => api.post('/cycles', data),
-  update: (id, data) => api.patch(`/cycles/${id}`, data),
-  remove: (id) => api.delete(`/cycles/${id}`),
-}
+export const submitTest = async (testId, payload) => {
+  const response = await api.post(`/api/tests/${testId}/submit/`, payload);
+  return response.data;
+};
 
-export const evaluationsAPI = {
-  list: (params) => api.get('/evaluations', { params }),
-  get: (id) => api.get(`/evaluations/${id}`),
-  submitDraft: (id, data) => api.patch(`/evaluations/${id}/draft`, data),
-  submitFinal: (id, data) => api.post(`/evaluations/${id}/submit`, data),
-}
+// Results APIs
+export const fetchSubmissionResult = async (submissionId) => {
+  const response = await api.get(`/api/results/${submissionId}/`);
+  return response.data;
+};
 
-export const reportsAPI = {
-  summary: () => api.get('/reports/summary'),
-  trends: (range) => api.get('/reports/trends', { params: { range } }),
-}
+export default api;
