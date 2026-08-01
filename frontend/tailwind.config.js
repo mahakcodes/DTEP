@@ -7,44 +7,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        cream: {
-          50: '#FDFBF7',
-          100: '#FAF7F2',
-          200: '#F5F0E6',
-          300: '#EFE8D8',
+        paper: '#FAF9F6',
+        ivory: '#F2F0EA',
+        ink: '#161A22',
+        slate: {
+          DEFAULT: '#5C5A52',
+          50: '#F8FAFC',
+          100: '#F1F5F9',
+          200: '#E2E8F0',
+          300: '#CBD5E1',
+          400: '#94A3B8',
+          500: '#64748B',
+          600: '#475569',
+          700: '#334155',
+          800: '#1E293B',
+          900: '#0F172A',
         },
-        beige: {
-          50: '#F3EFE7',
-          100: '#E8E1D5',
-          200: '#D9CFBE',
-          300: '#C4B8A1',
-        },
-        charcoal: {
-          50: '#52524E',
-          100: '#40403D',
-          200: '#333330',
-          300: '#2A2A28',
-          400: '#1E1E1C',
-        },
-        olive: {
-          50: '#E8EDE2',
-          100: '#C8D3BB',
-          200: '#A3B48E',
-          300: '#859973',
-          400: '#6B7C5E',
-          500: '#56644C',
-        },
-        terracotta: {
-          50: '#F4DED4',
-          100: '#E7BFAE',
-          200: '#D89A82',
-          300: '#C9785C',
-          400: '#B4593E',
-        },
+        forest: '#1F4A3D',
+        brass: '#A8823A',
+        hairline: '#DEDACE',
+        success: '#4B6B3A',
+        error: '#8C3A2E',
       },
       fontFamily: {
         serif: ['Fraunces', 'Georgia', 'serif'],
         sans: ['Sora', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       fontSize: {
         'display': ['clamp(3rem, 8vw, 5.5rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
@@ -57,13 +45,12 @@ export default {
         'eyebrow': ['0.75rem', { lineHeight: '1.2', letterSpacing: '0.12em' }],
       },
       borderRadius: {
-        '4xl': '2rem',
-        '5xl': '2.5rem',
+        'md': '6px',
+        'lg': '8px',
       },
       boxShadow: {
-        'soft': '0 1px 2px rgba(42, 42, 40, 0.04), 0 4px 12px rgba(42, 42, 40, 0.04)',
-        'soft-lg': '0 2px 4px rgba(42, 42, 40, 0.04), 0 12px 32px rgba(42, 42, 40, 0.06)',
-        'soft-xl': '0 4px 8px rgba(42, 42, 40, 0.04), 0 24px 48px rgba(42, 42, 40, 0.08)',
+        'hair': '0 1px 0 0 rgba(222, 218, 206, 1)',
+        'subtle': '0 1px 2px rgba(22, 26, 34, 0.04), 0 2px 8px rgba(22, 26, 34, 0.03)',
       },
       spacing: {
         '4.5': '1.125rem',
@@ -78,9 +65,6 @@ export default {
         '22': '5.5rem',
         '26': '6.5rem',
         '30': '7.5rem',
-      },
-      backgroundImage: {
-        'paper-texture': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")",
       },
       keyframes: {
         'fade-in-up': {
